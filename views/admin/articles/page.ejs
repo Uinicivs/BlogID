@@ -1,0 +1,26 @@
+<%- include ('../../partials/Header'); %>
+<body>
+    <%- include ('../../partials/Homenavbar'); %>
+
+    <main class="container">
+        <h3>Artigos</h3>
+        <hr>
+    </main>
+    <div class="container-fluid">
+        <div class="grid">
+            <% result.articles.rows.forEach(article =>{ %>
+                <article>
+                    <header><strong><%= article.title %></strong></header>
+                    <a href="/<%= article.slug %>" role="button">Ler mais</a>
+                </article>
+            <% }) %>
+        </div>
+    </div>
+</body>
+<style>
+    article{
+        text-align: center;
+    }
+</style>
+
+<%- include ('../../partials/Footer'); %>

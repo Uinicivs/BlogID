@@ -1,0 +1,92 @@
+<%- include ('../../partials/Header'); %>
+<body>
+    <%- include ('../../partials/Navbar'); %>
+
+    
+
+    <form method="post" action="/articles/update">
+        <div class="container-fluid">
+            <article>
+                <header>
+                    <div id="input-container">
+                        <input type="hidden" name="article_id" value="<%= article.id %>">
+                        <input type="text" id="article_title" name="article_title" placeholder="Título do artigo" value="<%= article.title %>" required>
+                        <details role="list">
+                            <summary aria-haspopup="listbox">Categoria</summary>
+                            <ul role="listbox">
+                                <% categories.forEach(category =>{ %>
+                                    <li>
+                                        <label for="<%= category.id %>">
+                                            <% if(category.id == article.categoryId){ %>
+                                                <input type="radio" id="category_id" name="category_id" value="<%= category.id %>" checked>
+                                            <% }else{ %>
+                                                <input type="radio" id="category_id" name="category_id" value="<%= category.id %>">
+                                            <% } %>    
+                                            <%= category.title %>
+                                        </label>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </details>
+                    </div>
+                    <button type="submit" class="title-btn">
+                        <span class="material-symbols-outlined">sync_alt</span>
+                        Atualizar artigo
+                    </button>
+                </header>
+                <body>
+                    <hr>
+                    <textarea name="article_text" id="article-text" cols="20" rows="30"></textarea>
+                </body>
+            </article>
+        </div>
+    </form>
+
+    <div id="noContent" style="display: none;">
+        <%- article.body %>
+    </div>
+
+</body>
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .title-btn{
+        border: none;
+        height: 40px;
+        width: auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #input-container {
+        border: none;
+        outline: none;
+        width: 40%;
+        display: flex;
+        justify-self: unset;
+    }
+    details {
+        width: 100%;
+        margin-left: 10px;
+    }
+</style>
+
+<%- include ('../../partials/Footer'); %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: '#article-text',
+        skin: 'oxide-dark',
+        content_css: 'dark',
+        plugins: 'powerpaste casechange searchreplace autolink directionality advcode visualblocks visualchars image link media mediaembed codesample table charmap pagebreak nonbreaking anchor tableofcontents insertdatetime advlist lists checklist wordcount tinymcespellchecker editimage help formatpainter permanentpen charmap linkchecker emoticons advtable export autosave',
+        toolbar: 'undo redo print spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image | alignleft aligncenter alignright alignjustify lineheight | checklist bullist numlist indent outdent | removeformat',
+        init_instance_callback: () => {
+            tinymce.activeEditor.setContent($('#noContent').html());
+        }
+    })
+
+</script>

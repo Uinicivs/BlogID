@@ -1,0 +1,29 @@
+<%- include ('../../partials/Header'); %>
+<body>
+    <%- include ('../../partials/Navbar'); %>
+
+    <main class="container">
+        <nav class="container-fluid">
+            <h3>Usuários</h3>
+            <a href="/admin/users/create" style="margin-top: 3px;"><span class="material-symbols-outlined">add</span></a>
+        </nav>
+        <hr>
+        <table role="grid">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user =>{ %>
+                    <tr>
+                        <th scope="row"><%= user.id %></th>
+                        <td><%= user.email %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </main>
+</body>
+<%- include ('../../partials/Footer'); %>

@@ -1,0 +1,36 @@
+<%- include ('partials/Header'); %>
+<body>
+    <%- include ('partials/Homenavbar'); %>
+
+    <main class="container">
+        <h3>Artigos</h3>
+        <div>
+            <a href=""><span class="material-symbols-outlined">arrow_forward_ios</span></a>
+        </div>
+    </main>
+    <hr>
+    <div class="container-fluid">
+        <div class="grid">
+            <% articles.forEach(article =>{ %>
+                <article>
+                    <header><strong><%= article.title %></strong></header>
+                    <a href="/<%= article.slug %>" role="button">Ler mais</a>
+                </article>
+            <% }) %>
+        </div>
+    </div>
+</body>
+<style>
+    main {
+        display: flex;
+        justify-content: space-between;
+    }
+    article{
+        text-align: center;
+    }
+    .container > div {
+        margin-top: 10px;
+    }
+</style>
+
+<%- include ('partials/Footer'); %>

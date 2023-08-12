@@ -1,0 +1,18 @@
+<%- include ('../../partials/Header'); %>
+<body>
+    <main class="container">
+        <article>
+            <header>
+                <h5>Admin login</h5>
+            </header>
+            <form method="post" action="/authenticate">
+                <label for="email">Endereço de email</label>
+                <input type="email" id="email" name="email" placeholder="email@exemplo.com" required>
+                <label for="email">Senha</label>
+                <input type="password" id="password" name="password" placeholder="*****" required>
+                <button type="submit" class="contrast">Entrar</button>
+            </form>
+        </article>
+    </main>
+</body>
+<%- include ('../../partials/Footer'); %>

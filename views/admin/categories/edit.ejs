@@ -1,0 +1,20 @@
+<%- include ('../../partials/Header'); %>
+<body>
+    <%- include ('../../partials/Navbar'); %>
+
+    <main class="container">
+        <article>
+            <header><h4>Edição de categoria</h4></header>
+            <body>
+                <form method="post" action="/categories/update">
+                    <label for="category">Categoria</label>
+                    <input type="hidden" name="category_id" value="<%= category.id %>">
+                    <input type="text" id="category_input" name="category_input" placeholder="" required value="<%= category.title %>">
+                    <button type="submit">Atualizar</button>
+                </form>
+            </body>
+        </article>
+    </main>
+
+</body>
+<%- include ('../../partials/Footer'); %>

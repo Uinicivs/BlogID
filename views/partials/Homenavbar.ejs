@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <nav>
+        <ul>
+          <li><strong>BlogID</strong></li>
+        </ul>
+        <ul>
+          <li>
+            <details role="list">
+              <summary aria-haspopup="listbox">Categorias</summary>
+              <ul role="listbox">
+                
+                  <% categories.forEach(category =>{ %>
+                    <li>
+                      <a href="/category/<%= category.slug %>"><%= category.title %></a>
+                    </li>
+                  <% }) %>
+              </ul>
+            </details>
+          </li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/user/login" role="button">Entrar</a></li>
+        </ul>
+    </nav>
+    <hr>
+</div>

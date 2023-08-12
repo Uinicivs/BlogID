@@ -1,0 +1,19 @@
+<%- include ('../../partials/Header'); %>
+<body>
+    <%- include ('../../partials/Navbar'); %>
+
+    <main class="container">
+        <article>
+            <header><h4>Cadastro de nova categoria</h4></header>
+            <body>
+                <form method="post" action="/categories/save">
+                    <label for="category">Categoria</label>
+                    <input type="text" id="category_input" name="category_input" placeholder="" required>
+                    <button type="submit">Salvar</button>
+                </form>
+            </body>
+        </article>
+    </main>
+
+</body>
+<%- include ('../../partials/Footer'); %>

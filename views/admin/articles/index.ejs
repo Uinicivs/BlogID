@@ -1,0 +1,77 @@
+<%- include ('../../partials/Header'); %>
+<body>
+    <%- include ('../../partials/Navbar'); %>
+
+    <main class="container">
+        <nav class="container-fluid">
+            <h3>Artigos</h3>
+            <a href="/admin/articles/new" style="margin-top: 3px;"><span class="material-symbols-outlined">add</span></a>
+        </nav>
+        <hr>
+        <table role="grid">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% articles.forEach(article =>{ %>
+                    <tr>
+                        <th scope="row"><%= article.id %></th>
+                        <td><%= article.title %></td>
+                        <td><%= article.slug %></td>
+                        <td><%= article.category.title %></td>
+                        <td id="actions">
+                            <form method="get" action="/admin/articles/edit/<%= article.id %>">
+                                <input type="hidden" name="id" value="">
+                                <button type="submit" class="contrast">
+                                    <span class="material-symbols-outlined">edit</span>
+                                </button>
+                            </form>
+                            <form method="post" action="/articles/delete" id="delete">
+                                <input type="hidden" name="id" value="<%= article.id %>">
+                                <button type="submit" class="secondary">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </main>
+
+</body>
+<style>
+    #actions{
+        display: flex;
+        justify-content: start;
+        align-items: end;
+        padding: 15px 0 5px 20px;
+    }
+    form {
+        margin: 5px 10px 0 0;
+    }
+    button {
+        width: 15px;
+        height: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('#delete').submit(function (e) { 
+        e.preventDefault();
+        const decision = confirm("Você deseja mesmo deletar esse artigo?")
+        if(decision)
+            e.target.submit()
+    });
+    });
+</script>
+<%- include ('../../partials/Footer'); %>
